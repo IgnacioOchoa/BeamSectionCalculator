@@ -1,5 +1,6 @@
 #include "utilities.h"
 #include  <uxhw.h>
+#define UNCERTAIN
 
 bool checkFile(std::string fileName) {
     std::ifstream is(fileName);
