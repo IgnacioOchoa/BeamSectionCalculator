@@ -6,7 +6,7 @@
 double totalHeight = 80; //[mm]
 double totalWidth = 46;  //[mm]
 double bendingMoment_Nm = 100; //[Nm]
-std::string fileName = "section.txt";
+std::string fileName = "section1.txt";
 //*****************************//
 
 int main()
