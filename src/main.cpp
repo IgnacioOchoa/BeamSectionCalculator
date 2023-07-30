@@ -6,7 +6,7 @@
 double totalHeight = 80; //[mm]
 double totalWidth = 46;  //[mm]
 double bendingMoment_Nm = 100; //[Nm]
-std::string fileName = "section1.txt";
+std::string fileName = ""sd0/Signaloid/example-loadDistFromFile/data.txt";
 //*****************************//
 
 int main()
