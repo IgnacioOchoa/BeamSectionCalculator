@@ -6,7 +6,7 @@
 double totalHeight = 80; //[mm]
 double totalWidth = 46;  //[mm]
 double bendingMoment_Nm = 100; //[Nm]
-std::string fileName = ""sd0/Signaloid/BeamCalculator/data.txt";
+std::string fileName = "sd0/Signaloid/BeamCalculator/data.txt";
 //*****************************//
 
 int main()
