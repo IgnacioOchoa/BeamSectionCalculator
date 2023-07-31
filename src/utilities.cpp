@@ -1,6 +1,45 @@
 #include "utilities.h"
-#include  <uxhw.h>
-#define UNCERTAIN
+
+#ifdef UNCERTAIN
+#include <uxhw.h>
+#endif
+
+bool parseArguments(const std::vector<std::string>& args, std::string& fileName, std::array<double,3>& params)
+{
+    std::array<std::string, 3> flags{"-w", "-h", "-m"};
+    if (args.size() < 2) {
+        std::cout << "Too few command-line arguments, you have to provide at least the section file name" << std::endl;
+        return false;
+    }
+    if(args[1][0] == '-') {
+        std::cout << "Missing section file name" << std::endl;
+        return false;
+    }
+    fileName = args[1];
+    short index = 0;
+    
+    for(auto flag : flags) {
+        std::vector<std::string>::const_iterator it= std::find(args.cbegin(), args.cend(), flag);
+        if (it != args.cend()) {
+            try {
+                params[index] = std::stod(*(it+1));
+            }
+            catch (...) { std::cout << "Could not parse the argument associated with " << flag 
+                                    << ", falling back to default" << std::endl; }
+        }
+        index++;
+    }
+    
+    return true;
+}
+
+void printInitialData(std::string fileName, double totalWidth, double totalHeight, double bendingMoment_Nm) {
+    std::cout << "Analisis started with the following data:\n";
+    std::cout << "Section: " << fileName << std::endl;
+    std::cout << "Section width: " << totalWidth << " mm" << std::endl;
+    std::cout << "Section height: " << totalHeight << " mm" << std::endl;
+    std::cout << "Bending moment: " << bendingMoment_Nm << " Nm" << std::endl << std::endl;
+}
 
 bool checkFile(std::string fileName) {
     std::ifstream is(fileName);
