@@ -1,5 +1,5 @@
 #include "utilities.h"
-
+#include "sstream"
 #ifdef UNCERTAIN
 #include <uxhw.h>
 #endif
@@ -22,7 +22,7 @@ bool parseArguments(const std::vector<std::string>& args, std::string& fileName,
         std::vector<std::string>::const_iterator it= std::find(args.cbegin(), args.cend(), flag);
         if (it != args.cend()) {
             try {
-                params[index] = std::stod(std::string(*(it+1)));
+                std::istringstream(*(it+1)) >> params[index];
             }
             catch (...) { std::cout << "Could not parse the argument associated with " << flag 
                                     << ", falling back to default" << std::endl; }
