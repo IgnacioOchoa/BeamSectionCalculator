@@ -114,7 +114,7 @@ In the problem at hand we accomplish this by declaring our element sides locatio
 
 ## Running the program
 
-In order to execute the program we need to provide as a first argument the name of the text file with the section discretization. Other optional flags are the width [-w] in mm, height [-h] in mm and applied moment [-m] in Nm. Some valid argument lists are shown below. The compilation flag (active by default when importing the project in Signaloids platform) UNCERTAIN enables the use of the *uxhw* library.
+In order to execute the program we need to provide as a first argument the name of the text file with the section discretization. Other optional flags are the width [-w] in mm, height [-h] in mm and applied moment [-m] in Nm. Some valid argument lists are shown below. The compilation flag (active by default when importing the project into Signaloid platform) UNCERTAIN enables the use of the *uxhw* library.
 - program section1.txt -w 80 -h 120 -m 200
 - program section1.txt
 - program section1.txt -w 100
@@ -131,8 +131,16 @@ We use the following discretization, contained in the file IPE80.txt
 
 ![IPE80_discretization](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/fc74283b-9691-4061-ad5f-194cc0fdc582)
 
+The results for inertia and maximum stress are as follows.
+
+![example1_inertia](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/a76258e7-fc09-49cf-b224-512d32973c33)
+
+![example1_stress](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/805ddb66-6202-4c01-a67b-fca9fcab896d)
+
+As we can see, the results show that the distribution includes the exact value and that even with a coarse discretization, the means are not that far from the exact value. The error is 4,6% for the moment of inertia and 4,4% for the maximum stress.
+
 ### Example 2
-This example compares the result distributions of progressive refinements over the discretization of a complex section.
+This example compares the resulting distributions of progressive refinements over the discretization of a complex section. The sections, included in the project, are named customSection1.txt, customSection2.txt and customSection3.txt respectively.
 
 ![example1](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/61a9708d-fbf2-4cc5-b666-3e5d7cf523b9)
 
