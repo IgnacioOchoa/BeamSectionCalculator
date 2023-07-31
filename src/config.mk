@@ -5,4 +5,4 @@ SOURCES = \
   utilities.cpp
 
 # Options that get passed to the C compiler
-#CXXFLAGS = -DDEBUG
+CXXFLAGS = -DDEBUG -D UNCERTAIN
