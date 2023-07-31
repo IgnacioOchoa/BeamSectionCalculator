@@ -72,7 +72,7 @@ Besides providing a text file with the shape of the section, the user must provi
 ## Discretization errors
 
 The approach outlined here has an inherent error associated with the discretization. We will consider the error with which each of the discretized elements contributes to the overall value. Do all elements contribute the same? If not, what is the contribution of each one?
-To answer these questions, we will first see where the error is **NOT**.
+To answer these questions, we will first see where the error is **not**.
 
 ### Contour bounding box elements
 
@@ -108,15 +108,31 @@ In order to provide some bounds for the error of the results, we would have to t
 
 From a probability point of view, we would be working with random variables with Uniform probability distributions (for the positions of the sides of each element), and then other random variables that are functions of these original random variables. For example an element in the top left corner of some internal perimeter region, would have its width defined as a random variable $` W = w + U \left(-\frac{b}{2},\frac{b}{2}\right) `$ and its height defined as another random variable $` H = h + U \left(-\frac{h}{2},\frac{h}{2}\right) `$. Then the area will be yet another random variable $` A = W*H `$. In this manner we can keep creating random variables that represent the other compound magnitudes required for the algorithm. 
 
-By forcing a little bit the Central Limit Theorem, we can expect that the probability distributions of the results we compute resemble a Gaussian distribution, but computing the mean $` \mu `$ and standard deviation $` \sigma `$ would not be that simple.
-
 Even with simple examples, the tracking of the uncertainties can be quite complex, and this is where the architecture developed by Signlaoid comes in to play to solve this problem very elegantly. By using their Compute Engine and the associated API, we can quickly inject randomized behaviour into our good old floating point variables, obtaining a final result that carries along the propbability distribution of all the intermediate steps.
 
 In the problem at hand we accomplish this by declaring our element sides locations as uniform random variables instead of plain double values. This is all we have to do, the engine takes care of the rest.
 
-## Example
+## Running the program
 
-The project includes some pre-discretized sections with varying level of detail, as the one shown below.
+In order to execute the program we need to provide as a first argument the name of the text file with the section discretization. Other optional flags are the width [-w] in mm, height [-h] in mm and applied moment [-m] in Nm. Some valid argument lists are shown below. The compilation flag (active by default when importing the project in Signaloids platform) UNCERTAIN enables the use of the *uxhw* library.
+- program section1.txt -w 80 -h 120 -m 200
+- program section1.txt
+- program section1.txt -w 100
+- program section1.txt -m 50
+
+## Examples
+
+### Example 1
+The first example compares the results of the algorithm with a standard IPE80 profile that has its section properties listed below.
+
+![IPE80_properties](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/30ec5da2-f6cf-4c08-b757-c354c462327d)
+
+We use the following discretization, contained in the file IPE80.txt
+
+![IPE80_discretization](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/fc74283b-9691-4061-ad5f-194cc0fdc582)
+
+### Example 2
+This example compares the result distributions of progressive refinements over the discretization of a complex section.
 
 ![example1](https://github.com/IgnacioOchoa/BeamSectionCalculator/assets/50671274/61a9708d-fbf2-4cc5-b666-3e5d7cf523b9)
 
