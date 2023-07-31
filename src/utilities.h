@@ -17,6 +17,10 @@ constexpr short topFlag =       0b00100;
 constexpr short botFlag =       0b01000;
 constexpr short internalFlag =  0b10000;
 
+bool parseArguments(const std::vector<std::string>& args, std::string& fileName, std::array<double,3>& params);
+
+void printInitialData(std::string fileName, double totalWidth, double totalHeight, double bendingMoment_Nm);
+
 bool checkFile(std::string fileName);
 
 std::pair<short,short> getSectionLimitLines(std::string fileName);
