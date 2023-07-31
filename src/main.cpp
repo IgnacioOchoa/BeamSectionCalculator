@@ -2,16 +2,27 @@
 #include <array>
 #include "utilities.h"
 
-//****** PROGRAM INPUT ********//
-double totalHeight = 80; //[mm]
-double totalWidth = 46;  //[mm]
-double bendingMoment_Nm = 100; //[Nm]
-std::string fileName = "section1.txt";
-//*****************************//
+//*********** DEFAULT VALUES **************//
+double defaultWidth = 50;             //[mm]
+double defaultHeight = 80;            //[mm]
+double defaultBendingMoment_Nm = 100; //[Nm]
+//*****************************************//
 
-int main()
+int main(int argc, char* argv[])
 {
-    //Data structures
+    // Parsing input data
+    std::array<double, 3> parameters{defaultWidth, defaultHeight, defaultBendingMoment_Nm};
+    std::vector<std::string> args(argv, argv+argc);
+    std::string fileName;
+    if(!parseArguments(args, fileName, parameters)) return 1;
+    
+    double totalWidth =       parameters[0];
+    double totalHeight =      parameters[1];
+    double bendingMoment_Nm = parameters[2];
+    
+    printInitialData(fileName, totalWidth, totalHeight, bendingMoment_Nm);
+
+    //Main data structures
     std::vector<std::pair<short,std::vector<short>>> qualifiedBlocks;
     std::vector<std::array<double,4>> refinedBlocks;
     
